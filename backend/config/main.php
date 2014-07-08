@@ -29,6 +29,13 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@app/views' => '@backend/themes/metronic/views',
+                ],
+            ],
+        ],
     ],
     'params' => $params,
 ];
