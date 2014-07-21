@@ -41,7 +41,7 @@ return [
         'view' => [
             'theme' => [
                 'pathMap' => [
-                   // '@app/views' => '@backend/themes/metronic/modules/site/',
+                	'@app/views'   => '@backend/themes/metronic/modules/site/views',
                     '@app/modules' => '@backend/themes/metronic/modules',
                 ],
             ],

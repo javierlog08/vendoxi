@@ -5,7 +5,7 @@ namespace app\modules\auth\controllers;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
-use common\models\LoginForm;
+use app\modules\auth\models\LoginForm;
 use yii\filters\VerbFilter;
 
 class UserController extends Controller
