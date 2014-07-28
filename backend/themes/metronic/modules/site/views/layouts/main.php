@@ -1,6 +1,7 @@
 <?php
 use backend\themes\metronic\assets\MetronicMainAsset;
 use backend\themes\metronic\widgets\MetronicNav;
+use backend\modules\auth\models\User;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -63,7 +64,7 @@ $assets = Yii::$app->assetManager->getBundle(MetronicMainAsset::class,false);
 		<!-- END RESPONSIVE MENU TOGGLER -->
 		<div class="top-menu">
 			<?php 
-				echo MetronicNav::widget();
+				echo MetronicNav::widget(['model'=>User::class]);
 			?>
 		</div>
 		

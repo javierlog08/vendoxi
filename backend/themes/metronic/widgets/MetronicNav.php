@@ -9,20 +9,116 @@ namespace backend\themes\metronic\widgets;
 
 use Yii;
 use yii\bootstrap\Nav;
+use yii\bootstrap\Dropdown;
+use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 
 class MetronicNav extends Nav
 {
+	public $model; // User model
+	
     public function init()
     {
     	parent::init();
-		$this->options = ['class' => 'navbar-nav pull-right'];
+		$this->encodeLabels = false;
+		$this->options = ['class' => 'nav navbar-nav pull-right'];
 		$this->items = [
-			[
-				'id'=>'header_notification_bar',
-				'label'=>'',
-				'items'=>["testa","testa"]
-			]
+			$this->notifications(),
+			$this->messages(),
+			$this->tasks(),
 		];
 	}
+	
+	private function notifications() {
+		
+		$data = array();
+		$count = 0;
+		return $notifications = [
+			'id'=>'header_notification_bar',
+			'label' => '<i class="fa fa-warning"></i><span class="badge badge-default">'.$count.' </span>',
+			'options' => ['class'=>'dropdown dropdown-extended dropdown-notification'],
+			'items' => [
+	        	'<li><p>You have '.$count.' new notifications</p></li>'.
+	        	''
+	    	],
+		];
+	}
+	
+	private function messages() {
+		
+		$data = array();
+		$count = 0;
+		return $messages = [
+			'id'=>'header_notification_bar',
+			'label' => '<i class="fa fa-envelope"></i><span class="badge badge-default">'.$count.' </span>',
+			'options' => ['class'=>'dropdown dropdown-extended dropdown-inbox'],
+			'items' => [
+	        	'<li><p>You have '.$count.' new messages</p></li>'.
+	        	''
+	    	],
+		];
+	}
+	
+	private function tasks() {
+		
+		$data = array();
+		$count = 0;
+		return $tasks = [
+			'id'=>'header_notification_bar',
+			'label' => '<i class="fa fa-tasks"></i><span class="badge badge-default">'.$count.' </span>',
+			'options' => ['class'=>'dropdown dropdown-extended dropdown-tasks'],
+			'items' => [
+	        	'<li><p>You have '.$count.' pending tasks</p></li>'.
+	        	''
+	    	],
+		];
+	}
+	
+	
+	
+	public function renderItem($item)
+    {
+        if (is_string($item)) {
+            return $item;
+        }
+        if (!isset($item['label'])) {
+            throw new InvalidConfigException("The 'label' option is required.");
+        }
+        $encodeLabel = isset($item['encode']) ? $item['encode'] : $this->encodeLabels;
+        $label = $encodeLabel ? Html::encode($item['label']) : $item['label'];
+        $options = ArrayHelper::getValue($item, 'options', []);
+        $items = ArrayHelper::getValue($item, 'items');
+        $url = ArrayHelper::getValue($item, 'url', '#');
+        $linkOptions = ArrayHelper::getValue($item, 'linkOptions', []);
+
+        if (isset($item['active'])) {
+            $active = ArrayHelper::remove($item, 'active', false);
+        } else {
+            $active = $this->isItemActive($item);
+        }
+
+        if ($items !== null) {
+            $linkOptions['data-toggle'] = 'dropdown';
+            Html::addCssClass($options, 'dropdown');
+            Html::addCssClass($linkOptions, 'dropdown-toggle');
+            if (is_array($items)) {
+                if ($this->activateItems) {
+                    $items = $this->isChildActive($items, $active);
+                }
+                $items = Dropdown::widget([
+                    'items' => $items,
+                    'encodeLabels' => $this->encodeLabels,
+                    'clientOptions' => false,
+                    'view' => $this->getView(),
+                ]);
+            }
+        }
+
+        if ($this->activateItems && $active) {
+            Html::addCssClass($options, 'active');
+        }
+
+        return Html::tag('li', Html::a($label, $url, $linkOptions) . $items, $options);
+    }
 	
 }
