@@ -64,7 +64,7 @@ $assets = Yii::$app->assetManager->getBundle(MetronicMainAsset::class,false);
 		<!-- END RESPONSIVE MENU TOGGLER -->
 		<div class="top-menu">
 			<?php 
-				echo MetronicNav::widget(['model'=>User::class]);
+				echo MetronicNav::widget();
 			?>
 		</div>
 		
