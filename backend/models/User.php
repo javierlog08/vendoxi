@@ -1,5 +1,5 @@
 <?php
-namespace app\modules\auth\models;
+namespace backend\models;
 
 use Yii;
 use yii\base\NotSupportedException;
@@ -176,5 +176,11 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+	
+	public function getNotifications()
+    {
+        // Customer has_many Order via Order.customer_id -> id
+        return $this->hasMany(Notifications::className(), ['user_id' => 'id']);
     }
 }

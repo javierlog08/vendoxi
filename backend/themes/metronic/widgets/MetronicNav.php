@@ -12,10 +12,19 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\Dropdown;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
+use yii\helpers\VarDumper;
+use backend\models\NotificationTypes;
 
 class MetronicNav extends Nav
 {
 	public $model; // User model
+	
+	private $_noticon = [
+		NotificationTypes::SUCCESS => '<span class="label label-sm label-icon label-success"><i class="fa fa-plus"></i></span>',
+		NotificationTypes::DANGER => '<span class="label label-sm label-icon label-danger"><i class="fa fa-bolt"></i></span>',
+		NotificationTypes::WARNING => '<span class="label label-sm label-icon label-warning"><i class="fa fa-bell-o"></i>/span>',
+		NotificationTypes::INFO => '<span class="label label-sm label-icon label-info"><i class="fa fa-bullhorn"></i></span>',
+	];
 	
     public function init()
     {
@@ -31,16 +40,29 @@ class MetronicNav extends Nav
 	
 	private function notifications() {
 		
-		$data = array();
 		$count = 0;
+		foreach($this->model->notifications as $notify){
+			$data[] = '<li>
+				<a href="#">
+				'.$this->_noticon[$notify->type].'
+				'.$notify->message.' <span class="time">
+				Just now </span>
+				</a>
+			</li>'; 
+		}
+
+		$count = count($data);
+		
+		array_unshift($data, '<li><p>You have '.$count.' new notifications</p></li>');
+		
+		$data[] = '<li class="external"><a href="#">See all notifications <i class="m-icon-swapright"></i></a></li>';
+		
+		
 		return $notifications = [
 			'id'=>'header_notification_bar',
 			'label' => '<i class="fa fa-warning"></i><span class="badge badge-default">'.$count.' </span>',
 			'options' => ['class'=>'dropdown dropdown-extended dropdown-notification'],
-			'items' => [
-	        	'<li><p>You have '.$count.' new notifications</p></li>'.
-	        	''
-	    	],
+			'items' => $data,
 		];
 	}
 	

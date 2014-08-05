@@ -22,7 +22,7 @@ return [
     ],
     'components' => [
         'user' => [
-            'identityClass' => 'app\modules\auth\models\User',
+            'identityClass' => 'backend\models\User',
             'enableAutoLogin' => true,
             'loginUrl' => ['auth/user/login'],
         ],
