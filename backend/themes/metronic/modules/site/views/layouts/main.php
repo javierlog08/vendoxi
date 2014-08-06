@@ -1,7 +1,7 @@
 <?php
 use backend\themes\metronic\assets\MetronicMainAsset;
 use backend\themes\metronic\widgets\MetronicNav;
-use backend\models\User;
+use yii\helpers\Html;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
@@ -20,6 +20,7 @@ $assets = Yii::$app->assetManager->getBundle(MetronicMainAsset::class,false);
 <head>
 <meta charset="utf-8"/>
 <title><?php echo Yii::$app->params['title'];?></title>
+<?= Html::csrfMetaTags() ?>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="" name="description"/>
@@ -63,7 +64,7 @@ $assets = Yii::$app->assetManager->getBundle(MetronicMainAsset::class,false);
 		<!-- END RESPONSIVE MENU TOGGLER -->
 		<div class="top-menu">
 			<?php 
-				echo MetronicNav::widget(['model'=>User::findOne(Yii::$app->user->id)]);
+				echo MetronicNav::widget(['assets'=>$assets]);
 			?>
 		</div>
 		

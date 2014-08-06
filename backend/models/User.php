@@ -180,7 +180,16 @@ class User extends ActiveRecord implements IdentityInterface
 	
 	public function getNotifications()
     {
-        // Customer has_many Order via Order.customer_id -> id
         return $this->hasMany(Notifications::className(), ['user_id' => 'id']);
+    }
+	
+	public function getMessages()
+    {
+        return $this->hasMany(Messages::className(),['target_id' => 'id']);
+    }
+	
+	public function getDetail()
+	{
+        return $this->hasOne(UserDetail::className(),['user_id' => 'id']);
     }
 }
