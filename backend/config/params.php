@@ -5,7 +5,7 @@ return [
     'copyright'  =>	'2014 &copy; Vendoxi Corp.',
     
 	/*----------------------------------------------------------------------
-	 * Menu
+	 * Metronic Theme Configs
 	 * 
 	 * Metronic nav Profile Menu
 	 * Used On MetronicNavWidget from Metronic Theme Only

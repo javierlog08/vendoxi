@@ -67,9 +67,7 @@ $assets = Yii::$app->assetManager->getBundle(MetronicMainAsset::class,false);
 				echo MetronicNav::widget(['assets'=>$assets]);
 			?>
 		</div>
-		
-		
-		
+		<!-- END TOP NAVIGATION MENU -->
 	</div>
 	<!-- END HEADER INNER -->
 </div>
@@ -78,9 +76,18 @@ $assets = Yii::$app->assetManager->getBundle(MetronicMainAsset::class,false);
 </div>
 <!-- BEGIN CONTAINER -->
 <div class="page-container">
-	<div class="content">
-		<?= $content ?>
+	<!-- BEGIN SIDEBAR -->
+	<div class="page-sidebar-wrapper">
 	</div>
+	<!-- END SIDEBAR -->
+		
+	<!-- BEGIN CONTENT -->	
+	<div class="page-content-wrapper">
+		<div class="content">
+			<?= $content ?>
+		</div>
+	</div>
+	<!-- END CONTENT -->
 </div>
 <!-- END CONTAINER -->
 
