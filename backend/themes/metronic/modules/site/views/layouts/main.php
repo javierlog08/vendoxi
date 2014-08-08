@@ -1,6 +1,7 @@
 <?php
 use backend\themes\metronic\assets\MetronicMainAsset;
 use backend\themes\metronic\widgets\MetronicNav;
+use backend\themes\metronic\widgets\MetronicSidebar;
 use yii\helpers\Html;
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -78,6 +79,9 @@ $assets = Yii::$app->assetManager->getBundle(MetronicMainAsset::class,false);
 <div class="page-container">
 	<!-- BEGIN SIDEBAR -->
 	<div class="page-sidebar-wrapper">
+		<?php 
+			echo MetronicSideBar::widget();
+		?>
 	</div>
 	<!-- END SIDEBAR -->
 		

@@ -2,14 +2,26 @@
 
 namespace backend\themes\metronic\widgets;
 
-use Yii;
-use yii\apidoc\templates\bootstrap\SideNavWidget;
+use Yii1;
+use yii\bootstrap\Widget;
 
-class MetronicSidebar extends SideNavWidget
+class MetronicSidebar extends Widget
 {
-	public function init() {
+	public $items = [];
+	public $toggler = true;
+	
+	public function init() 
+	{
 		parent::init();
 		
+	}
+	
+	
+	public function renderItem() 
+	{
+		foreach($this->items as $item) {
+			
+		}	
 	}
 	
 }
