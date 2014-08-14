@@ -20,7 +20,7 @@ class HomeController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index'],
+                        'actions' => ['index','dash'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -42,6 +42,11 @@ class HomeController extends Controller
     }
 	
     public function actionIndex()
+    {
+        return $this->render('index');
+    }
+	
+	public function actionDash()
     {
         return $this->render('index');
     }

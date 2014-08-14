@@ -28,13 +28,13 @@ return [
 	 'MetronicSideNavMenu' => [
 	 	['url'=>'site/home/index','icon'=>'fa-home','label'=>'Dashboard'],
 	 	[
-	 		'url'=>'site/ecomerce/index',
+	 		'url'=>'javascript:;',
 	 		'icon'=>'fa-shopping-cart',
 	 		'label'=>'eCommerce',
 	 		'submenu'=> [
-	 			['url'=>'site/ecomerce/dashboard','icon'=>'fa-bullhorn','label'=>'Dashboard'],
+	 			['url'=>'site/ecomerce/dash','icon'=>'fa-bullhorn','label'=>'Dashboard'],
 	 			['url'=>'site/ecomerce/orders','icon'=>'fa-shopping-cart','label'=>'Orders'],
-	 			['url'=>'site/ecomerce/orders','icon'=>'fa-sitemap','label'=>'Products'],
+	 			['url'=>'site/ecomerce/products','icon'=>'fa-sitemap','label'=>'Products'],
 	 		]
 	 	],
 	 ],

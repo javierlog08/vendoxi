@@ -89,7 +89,7 @@ $assets = Yii::$app->assetManager->getBundle(MetronicMainAsset::class,false);
 		
 	<!-- BEGIN CONTENT -->	
 	<div class="page-content-wrapper">
-		<div class="content">
+		<div class="page-content">
 			<?= $content ?>
 		</div>
 	</div>

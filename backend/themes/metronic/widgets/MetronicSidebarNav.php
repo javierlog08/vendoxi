@@ -7,12 +7,13 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\Dropdown;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
+use yii\helpers\VarDumper;
 
 class MetronicSidebarNav extends Nav
 {
 	public $items = [];
 	public $toggler = true;
-	
+	public $controller;
 	public function init() 
 	{
 		parent::init();
@@ -27,12 +28,12 @@ class MetronicSidebarNav extends Nav
 			$this->search(),
 		];
 		
-		$this->menu();
+		$this->renderMenu();
 		
 	}
 	
 	
-	public function toggleButton() {
+	private function toggleButton() {
 		return $button = '
 		<li class="sidebar-toggler-wrapper">
 			<div class="sidebar-toggler">
@@ -40,7 +41,7 @@ class MetronicSidebarNav extends Nav
 		</li>';
 	}
 	
-	public function search() {
+	private function search() {
 		return $form = '
 		<li class="sidebar-search-wrapper hidden-xs">
 			<form class="sidebar-search" action="extra_search.html" method="POST">
@@ -59,24 +60,40 @@ class MetronicSidebarNav extends Nav
 		';
 	}
 
-	public function menu() {
+	private function renderMenu() 
+	{
 		$menu = [];
 		foreach(Yii::$app->params['MetronicSideNavMenu'] as $item) {
-			$i = [
+			$li = [
 				'url'=>$item['url'],
-				'label'=>"<i class=\"fa".$item['icon']."\"></i>".$item['label'],
+				'label'=>"<i class=\"fa ".$item['icon']."\"></i><span class=\"title\">".$item['label']."</span>",
 			];
 			
+			if($item['url']==Yii::$app->requestedRoute) {
+				$li['label'].='<span class="selected"></span>';
+				$li['options'] = ['class'=>'active'];
+			}
+				
+			
 			if(isset($item['submenu'])) {
+				$li['label'].='<span class="arrow "></span>';
 				foreach($item['submenu'] as $sub) {
-					$i['items'][] = [
-						'label'=>"<i class=\"fa".$sub['icon']."\"></i>".$sub['label'],
+					$sli = [
+						'label'=>"<i class=\"fa ".$sub['icon']."\"></i><span class=\"title\">".$sub['label']."</span>",
 						'url'=>$sub['url'],
 					];
+					
+					if($sub['url']==Yii::$app->requestedRoute) {
+						$sli['options'] =  ['class'=>'active'];
+						$li['label'].='<span class="selected"></span>';
+						$li['options'] = ['class'=>'active open'];
+					}
+					
+					$li['items'][] = $sli;
 				}
 			}
 			
-			$this->items[] = $i;
+			$this->items[] = $li;
 		}
 	}
 	
@@ -102,17 +119,15 @@ class MetronicSidebarNav extends Nav
         }
 
         if ($items !== null) {
-            $linkOptions['data-toggle'] = 'dropdown';
-            Html::addCssClass($options, 'dropdown');
-            Html::addCssClass($linkOptions, 'dropdown-toggle');
             if (is_array($items)) {
                 if ($this->activateItems) {
                     $items = $this->isChildActive($items, $active);
                 }
-                $items = Dropdown::widget([
+                $items = Nav::widget([
                     'items' => $items,
                     'encodeLabels' => $this->encodeLabels,
                     'clientOptions' => false,
+                    'options'=>['class'=>'sub-menu'],
                     'view' => $this->getView(),
                 ]);
             }
