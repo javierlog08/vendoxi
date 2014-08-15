@@ -127,7 +127,7 @@ class MetronicSidebarNav extends Nav
                     'items' => $items,
                     'encodeLabels' => $this->encodeLabels,
                     'clientOptions' => false,
-                    'options'=>['class'=>'sub-menu'],
+                    'options'=>['class'=>'sub-menu','style'=>'display:block'],
                     'view' => $this->getView(),
                 ]);
             }
