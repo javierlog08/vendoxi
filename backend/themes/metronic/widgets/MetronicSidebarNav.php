@@ -32,6 +32,12 @@ class MetronicSidebarNav extends Nav
 		
 	}
 	
+	public function run()
+    {
+        echo $this->renderItems();
+    }
+	
+	
 	
 	private function toggleButton() {
 		return $button = '
@@ -123,7 +129,7 @@ class MetronicSidebarNav extends Nav
                 if ($this->activateItems) {
                     $items = $this->isChildActive($items, $active);
                 }
-                $items = Nav::widget([
+                $items = NavItems::widget([
                     'items' => $items,
                     'encodeLabels' => $this->encodeLabels,
                     'clientOptions' => false,

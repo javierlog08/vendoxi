@@ -8,7 +8,12 @@ class AuthModule extends \yii\base\Module
     public function init()
     {
         parent::init();
-		
+		$this->setup();
         // custom initialization code goes here
     }
+	
+	public function setup() {
+		$setup = new AuthSetup();
+		$setup->init();
+	}
 }

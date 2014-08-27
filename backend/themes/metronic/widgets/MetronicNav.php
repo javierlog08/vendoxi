@@ -54,6 +54,12 @@ class MetronicNav extends Nav
 		];
 	}
 	
+	public function run()
+    {
+        echo $this->renderItems();
+    }
+	
+	
 	private function notifications() 
 	{
 		
