@@ -26,15 +26,26 @@ return [
 	 ],
 	 
 	 'MetronicSideNavMenu' => [
-	 	['url'=>'site/home/index','icon'=>'fa-home','label'=>'Dashboard'],
 	 	[
 	 		'url'=>'javascript:;',
-	 		'icon'=>'fa-shopping-cart',
-	 		'label'=>'eCommerce',
+	 		'icon'=>'fa-gear',
+	 		'label'=>'Autenticación',
 	 		'submenu'=> [
-	 			['url'=>'site/ecomerce/dash','icon'=>'fa-bullhorn','label'=>'Dashboard'],
-	 			['url'=>'site/ecomerce/orders','icon'=>'fa-shopping-cart','label'=>'Orders'],
-	 			['url'=>'site/ecomerce/products','icon'=>'fa-sitemap','label'=>'Products'],
+	 			['url'=>'auth/user','icon'=>'fa-user','label'=>'Usuarios'],
+	 			['url'=>'auth/roles','icon'=>'fa-group','label'=>'Roles'],
+	 		]
+	 	],
+	 	[
+	 		'url'=>'javascript:;',
+	 		'icon'=>'fa-th-large',
+	 		'label'=>'Front-End',
+	 		'submenu'=> [
+	 			['url'=>'site/menu','icon'=>'fa-list-ul','label'=>'Menu del sitio'],
+	 			['url'=>'site/categories','icon'=>'fa-sitemap','label'=>'Categorias'],
+	 			['url'=>'site/pages','icon'=>'fa-file-text','label'=>'Paginas'],
+	 			['url'=>'site/announces','icon'=>'fa-list-alt','label'=>'Anuncios'],
+	 			['url'=>'site/lang','icon'=>'fa-globe','label'=>'Lenguaje'],
+	 			['url'=>'site/footer','icon'=>'fa-columns','label'=>'Footer'],
 	 		]
 	 	],
 	 ],

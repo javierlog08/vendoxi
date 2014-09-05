@@ -24,9 +24,9 @@ class MetronicMainAsset extends AssetBundle
     	/*BEGIN PAGE STYLES */
     	'admin/pages/css/tasks.css',
     	/*BEGIN THEME STYLES*/
+    	'admin/layout/css/layout.css',
     	'global/css/components.css',
     	'global/css/plugins.css',
-    	'admin/layout/css/layout.css',
     	'admin/layout/css/themes/default.css',
     	'admin/layout/css/custom.css'
     ];
